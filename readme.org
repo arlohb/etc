@@ -1,0 +1,36 @@
+#+title: Like dotfiles, but system-wide
+
+System-wide config files are stored in this repo.
+
+* Setup
+#+begin_src bash
+alias etc='sudo git --git-dir=/etc/.cfg --work-tree=/etc'
+sudo bash -c 'echo ".cfg" >> .gitignore'
+etc checkout
+etc config --local status.showUntrackedFiles no
+#+end_src
+
+* Config files
+
+** [[./modprobe.d/blacklist.conf]]
+
+Turns off the pcspkr module to stop annoying beeps in tty.
+
+** [[./environment]]
+
+Sets XDG_*_HOME vars so config is placed in the right place.
+
+** [[./gamemode.ini]]
+
+Gamemode is a set of optimisations to speed up games.
+This is my config to speed it up as much as possible.
+
+** [[./mkinitcpio.conf]]
+
+Part of the startup process, controlling which kernel modules are loaded.
+
+** [[./pacman.conf]]
+
+While I use yup as the package manager, the pacman output is still visible from
+it, so I make it look as good as possible. This also enables the multilib repos
+for steam, and parallel download for faster installs.
